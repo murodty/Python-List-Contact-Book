@@ -20,7 +20,7 @@ def show_menu() -> None:
     print("5. 🚪 Dasturni yakunlash")
 
 
-def is_valid_contact(contact: str) -> bool:
+def is_valid_contact(contact: List) -> bool:
     """
     Kontakt formati to‘g‘ri yoki noto‘g‘ri ekanligini aniqlaydi.
 
@@ -40,37 +40,53 @@ def add_contact(contact_list: List[str]) -> None:
     Args:
         contact_list (List[str]): Kontaktlar ro‘yxati.
     """
-    pass
+    name = input("Name: ")
+    phone = input("Phone: ")
+    email = input("Email: ")
+
+    new_contact = [name , phone, email]
+
+    contact_list.append(new_contact)
+    print('Kontakt muvaffoqiyatli qoshildi.')
 
 
-def list_contacts(contact_list: List[str]) -> None:
+def list_contacts(contact_list: List[List]) -> None:
     """
     Kontaktlar ro‘yxatini konsolga chiqaradi.
 
     Args:
         contact_list (List[str]): Kontaktlar ro‘yxati.
     """
-    pass
+    if contact_list != []:
+        print('barcha kantactlar')
+        for contact in contact_list:
+            print(f'{contact[0]} -{contact[1]}, {contact[2]}')
+        else:
+            print('kontakt yoq')
 
 
-def search_contact(contact_list: List[str]) -> None:
+def search_contact(contact_list: List[List]) -> None:
     """
     Foydalanuvchi kiritgan ism bo‘yicha kontaktlarni qidiradi.
 
     Args:
         contact_list (List[str]): Kontaktlar ro‘yxati.
     """
-    pass
+    search = input('Search: ')
+    for contact in contact_list:
+        if search.lower() in contact[0].lower():
+           print(f'{contact[0]} -{contact[1]}, {contact[2]}')
 
-
-def filter_gmail_contacts(contact_list: List[str]) -> None:
+def filter_gmail_contacts(contact_list: List[List]) -> None:
     """
     Faqat @gmail.com domeniga ega kontaktlarni ko‘rsatadi.
 
     Args:
         contact_list (List[str]): Kontaktlar ro‘yxati.
     """
-    pass
+    for contact in contact_list:
+        if filter_gmail_contacts[2].endwith('@gmail.com'):
+            print(f'{contact[0]} -{contact[1]}, {contact[2]}')
 
 
 def main() -> None:
@@ -78,7 +94,7 @@ def main() -> None:
     Dasturning asosiy ishga tushirish funksiyasi.
     Menyu orqali foydalanuvchi tanlovini boshqaradi.
     """
-    contacts: List[str] = []
+    contacts: List[List] = []
 
     while True:
         show_menu()
